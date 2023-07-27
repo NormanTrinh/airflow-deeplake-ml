@@ -1,5 +1,5 @@
 from airflow.decorators import dag
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python import PythonOperator
 from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.utils.dates import days_ago
 from docker.types import Mount
@@ -16,7 +16,7 @@ dockerops_kwargs = {
     "mount_tmp_dir": False,
     "mounts": [
         Mount(
-            source="<path_to_your_airflow-ml_repo>/data", # Change to your path
+            source="/home/dev1/Desktop/airflow-ml/data", # Change to your path
             target="/opt/airflow/data/",
             type="bind",
         )
