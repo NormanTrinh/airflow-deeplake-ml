@@ -16,7 +16,7 @@ To use this pipeline for local development, follow the steps below:
 
 1. Ensure that your Docker Engine has sufficient memory allocated, as running the pipeline may require more memory in certain cases.
 
-2. Сhange path to your local repo in `dags/test_dag.py`. Replace "<absolute_path_to_your_airflow-ml_repo>/data" with your path.
+2. Сhange path to your local repo in `dags/test_dag.py`. Replace "<absolute_path_to_your_airflow-ml_repo>/data" and "<absolute_path_to_your_airflow-ml_repo>/results" with your path.
 
 3. Before the first Airflow run, prepare the environment by executing the following steps:
 
