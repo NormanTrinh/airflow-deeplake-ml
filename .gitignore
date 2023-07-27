@@ -167,3 +167,6 @@ data/predict/*.json
 logs 
 config
 plugins
+
+# result
+results

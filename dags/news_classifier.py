@@ -1,4 +1,4 @@
-from airflow.decorators import dag
+from airflow.decorators import dag, task
 from airflow.operators.python import PythonOperator
 from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.utils.dates import days_ago
@@ -16,7 +16,7 @@ dockerops_kwargs = {
     "mount_tmp_dir": False,
     "mounts": [
         Mount(
-            source="/home/dev1/Desktop/airflow-ml/data", # Change to your path
+            source="/home/dev1/Desktop/airflow-ml/data", # Change to your absolute path
             target="/opt/airflow/data/",
             type="bind",
         )
@@ -29,13 +29,14 @@ dockerops_kwargs = {
 
 
 # Create DAG
-@dag("financial_news", start_date=days_ago(0), schedule="@daily", catchup=False)
+@dag("convert_to_deeplake", start_date=days_ago(0), schedule="@daily", catchup=False)
 def taskflow():
     # Task 1
-    news_load = DockerOperator(
-        task_id="news_load",
-        container_name="task__news_load",
-        image="data-loader:latest",
+    load_images = DockerOperator(
+        task_id="load_images",
+        container_name="task__images_load",
+        image="load_and_convert:latest",
+        auto_remove = True,
         command=f"python data_load.py --data_path {raw_data_path}",
         **dockerops_kwargs,
     )
@@ -45,6 +46,7 @@ def taskflow():
         task_id="news_label",
         container_name="task__news_label",
         image="model-prediction:latest",
+        auto_remove = True,
         command=f"python model_predict.py --data_path {raw_data_path} --pred_path {pred_data_path}",
         **dockerops_kwargs,
     )
@@ -61,5 +63,5 @@ def taskflow():
 
     news_load >> news_label >> news_by_topic
 
-
+    
 taskflow()

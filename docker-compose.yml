@@ -50,7 +50,7 @@ x-airflow-common:
   # In order to add custom dependencies or upgrade provider packages you can use your extended image.
   # Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml
   # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
-  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.6.1}
+  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:slim-2.6.3-python3.9}
   # build: .
   environment:
     &airflow-common-env
@@ -60,7 +60,7 @@ x-airflow-common:
     AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
     AIRFLOW__CORE__FERNET_KEY: ''
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
-    AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
     # yamllint disable rule:line-length
     # Use simple http server on scheduler for health checks
@@ -69,7 +69,7 @@ x-airflow-common:
     AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
     # WARNING: Use _PIP_ADDITIONAL_REQUIREMENTS option ONLY for a quick checks
     # for other purpose (development, test and especially production usage) build/extend Airflow image.
-    _PIP_ADDITIONAL_REQUIREMENTS: apache-airflow-providers-docker==3.6.0
+    _PIP_ADDITIONAL_REQUIREMENTS: apache-airflow-providers-docker==3.7.1
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
@@ -237,17 +237,11 @@ services:
       - -c
       - airflow
 
-  data-loader:
+  load_and_convert:
     build:
-      context: ml_pipeline/data_loader
-    image: data-loader
-    restart: "no"
-
-  model-prediction:
-    build:
-      context: ml_pipeline/model_prediction
-    image: model-prediction
-    restart: "no"
+      context: ml_pipeline/load_and_convert
+    image: load_and_convert
+    restart: "always"
     
   # Required because of DockerOperator. For secure access and handling permissions.
   docker-socket-proxy:
