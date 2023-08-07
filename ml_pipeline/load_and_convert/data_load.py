@@ -11,13 +11,14 @@ logging.basicConfig(level=logging.INFO)
 
 @click.command()
 @click.option("--data_path", help="Path to the image and boxes folder")
-@click.option("--saved_path", help="Saved path for deep lake and visualize result")
+@click.option("--saved_path", help="Saved path for deeplake")
 def data_load(data_path: str, saved_path: str) -> None:
     """
-    Fetches financial news from the specified RSS feed URL, processes the data, and saves it to a CSV file.
+    Load data and save to a path
 
     Parameters:
-        data_path (str): The path where the processed data will be saved as a CSV file.(sua sau)
+        data_path (str): Path to the image and boxes folder
+        saved_path (str): Path for deeplake dataset
     """
     logging.info("Create init Deep Lake dataset")
     if os.path.exists(saved_path + '/animals_od_deeplake'):

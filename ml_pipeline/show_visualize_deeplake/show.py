@@ -11,12 +11,13 @@ logging.basicConfig(level=logging.INFO)
 @click.command()
 @click.option("--deeplake_path", help="Path to the deeplake dataset")
 @click.option("--saved_path", help="Saved path for deep lake and visualize result")
-def data_load(deeplake_path: str, saved_path: str) -> None:
+def visualize(deeplake_path: str, saved_path: str) -> None:
     """
-    Fetches financial news from the specified RSS feed URL, processes the data, and saves it to a CSV file.
+    Visualize an image
 
     Parameters:
-        data_path (str): The path where the processed data will be saved as a CSV file.(sua sau)
+        deeplake_path (str): Path to the deeplake dataset
+        saved_path (str): Saved path for visualize result
     """
     logging.info("Load Deep Lake dataset")
     ds = deeplake.load(deeplake_path)
@@ -24,10 +25,10 @@ def data_load(deeplake_path: str, saved_path: str) -> None:
 
     # Draw bounding boxes for the fourth image
     ind = 1
-    img = Image.fromarray(ds.images[ind ].numpy())
+    img = Image.fromarray(ds.images[ind].numpy())
     draw = ImageDraw.Draw(img)
     (w,h) = img.size
-    boxes = ds.boxes[ind ].numpy()
+    boxes = ds.boxes[ind].numpy()
 
     for b in range(boxes.shape[0]):
         (xc,yc) = (int(boxes[b][0]*w), int(boxes[b][1]*h))
@@ -40,4 +41,4 @@ def data_load(deeplake_path: str, saved_path: str) -> None:
     logging.info(f"Image saved at {saved_path + '/test_img.jpg'}")
 
 if __name__ == "__main__":
-    data_load()
+    visualize()
