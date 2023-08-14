@@ -15,8 +15,8 @@ from pprint import pprint
 # Configure HTTP basic authorization: Basic
 configuration = client.Configuration(
     host="http://localhost:8080/api/v1",
-    username = 'YOUR_USERNAME',
-    password = 'YOUR_PASSWORD'
+    username = 'airflow',
+    password = 'airflow'
 )
 
 # Enter a context with an instance of the API client

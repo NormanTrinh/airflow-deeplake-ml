@@ -16,12 +16,12 @@ dockerops_kwargs = {
     "mount_tmp_dir": False,
     "mounts": [
         Mount(
-            source="<absolute_path_to_your_airflow-ml_repo>/data", # Change to your absolute path
+            source="/home/dev1/Desktop/airflow-ml/data", # Change to your absolute path
             target="/opt/airflow/data/",
             type="bind",
         ),
         Mount(
-            source="<absolute_path_to_your_airflow-ml_repo>/results", # Change to your absolute path
+            source="/home/dev1/Desktop/airflow-ml/results", # Change to your absolute path
             target="/opt/airflow/results",
             type="bind",
         )
@@ -56,17 +56,6 @@ def taskflow():
         **dockerops_kwargs,
     )
 
-    # # Task 3
-    # news_by_topic = PythonOperator(
-    #     task_id="news_by_topic",
-    #     python_callable=aggregate_predictions,
-    #     op_kwargs={
-    #         "pred_data_path": pred_data_path,
-    #         "result_data_path": result_data_path,
-    #     },
-    # )
-
-    # news_load >> news_label >> news_by_topic
     load_images >> show_result
     
 taskflow()
