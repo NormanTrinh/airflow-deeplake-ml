@@ -1,0 +1,1 @@
+apache-airflow-client>=2.6.2
