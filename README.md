@@ -49,6 +49,7 @@ To use this pipeline for local development, follow the steps below:
     ```
     
 ## To do
+- [x] Create API manual in [Airflow_API](Airflow_API) folder
 - [x] Trigger dag with next execution time (e.g. Trigger in next 5 minutes, 1 hour, ...) completed
     - <mark>Toggle on</mark> the DAG you want to use at http://localhost:8080
     - Run [trigger_dag.py](Airflow_API/trigger_dag.py)
