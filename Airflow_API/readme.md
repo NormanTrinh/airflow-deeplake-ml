@@ -23,17 +23,20 @@ pip install -r requirement.txt
 ```
 
 - Now we can controlling airflow what ever we want using [these API](https://github.com/apache/airflow-client-python/tree/main/airflow_client#documentation-for-api-endpoints)
-    - **Note**: The table in above link have 4 columns: Class, Method, HTTP request, Description
+    - Select the method we want to use in this table
+ 
+      | Class | Method | HTTP request | Description |
+      | ------ | ------ | ------ | ------ |
+      | ... | ... | ... | ... |
 
-        (The display of some devices may not show <mark>Description</mark> column, we need to *scroll horizontally to the right*)
-        | Class | Method | HTTP request | Description |
-        | ------ | ------ | ------ | ------ |
-        |  |  |  |  |
-    - <ins>First modification is</ins>: add `as client` in the library import in the following line
+      **Note**: That table from [this link](https://github.com/apache/airflow-client-python/tree/main/airflow_client#documentation-for-api-endpoints) have 4 columns: Class, Method, HTTP request, Description. The display of some devices may not show <mark>Description</mark> column, we need to *scroll horizontally to the right*
+
+        
+    - <ins>First modification</ins>: after selected the method we want to use, in their example code, from the library import, add `as client` in the following line
         ```python
         import airflow_client.client as client
         ```
-    - <ins>Next modification</ins>: you must modify the `configuration` in all example code in Method column like this:
+    - <ins>Next modification</ins>: we must modify the `configuration` variable in that code like this:
 
         Change
         ```python
