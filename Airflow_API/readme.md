@@ -1,5 +1,9 @@
 # To do
 - [x] Trigger dag with next execution time (e.g. Trigger in next 5 minutes, 1 hour, ...) completed
+    - <mark>Toggle on</mark> the DAG you want to use at http://localhost:8080
+    - Run [trigger_dag.py](Airflow_API/trigger_dag.py)
+        - Modify the dag_id you want to trigger at [line 29](https://gitlab.com/TianHuijun/airflow-demo/-/blob/main/Airflow_API/trigger_dag.py#L29)
+        - Modify the logical_date (this is the next execution time) at [line 36](https://gitlab.com/TianHuijun/airflow-demo/-/blob/main/Airflow_API/trigger_dag.py#L36)
 - [ ] Xcom in DockerOperator
 
 # How to use Airflow API
