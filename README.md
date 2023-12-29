@@ -51,9 +51,9 @@ To use this pipeline for local development, follow the steps below:
 ## To do
 - [x] Create API manual in [Airflow_API](Airflow_API) folder
 - [x] Trigger dag with next execution time (e.g. Trigger in next 5 minutes, 1 hour, ...) completed
-    - <mark>Toggle on</mark> the DAG you want to use at http://localhost:8080
+    - `Toggle on` the DAG you want to use at http://localhost:8080
     - Run [trigger_dag.py](Airflow_API/trigger_dag.py)
-        - Modify the dag_id you want to trigger at [line 29](https://github.com/TianHuijun/airflow-deeplake-ml/blob/test_img/Airflow_API/trigger_dag.py#L29)
-        - Modify the execution_time (this is the next execution time) at [line 32](https://github.com/TianHuijun/airflow-deeplake-ml/blob/test_img/Airflow_API/trigger_dag.py#L32), you may have to modify logical_date at [line 36](https://github.com/TianHuijun/airflow-deeplake-ml/blob/test_img/Airflow_API/trigger_dag.py#L36)
+        - Modify the dag_id you want to trigger at [line 29](https://github.com/NormanTrinh/airflow-deeplake-ml/blob/test_img/Airflow_API/trigger_dag.py#L29)
+        - Modify the execution_time (this is the next execution time) at [line 32](https://github.com/NormanTrinh/airflow-deeplake-ml/blob/test_img/Airflow_API/trigger_dag.py#L32), you may have to modify logical_date at [line 36](https://github.com/NormanTrinh/airflow-deeplake-ml/blob/test_img/Airflow_API/trigger_dag.py#L36)
 - [ ] XCom in DockerOperator
 
